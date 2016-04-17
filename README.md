@@ -16,7 +16,9 @@ jdk 1.8
 maven 3.3.9
 
 ### 使用的技术 ###
-springmvc + spring + mybatis
+目前是初期，使用springmvc + spring + mybatis + freemarker
+
+后期会陆续加入其他技术，将会更新到此文档
 
 ### 使用建议 ###
 
