@@ -35,7 +35,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 /**
- * @author liuzh
+ * @author zhanhuanhuan
  */
 @Controller
 public class MainPageController {

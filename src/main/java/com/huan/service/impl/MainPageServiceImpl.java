@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author liuzh
+ * @author zhanhuanhuan
  */
 @Service
 public class MainPageServiceImpl implements MainPageService {
