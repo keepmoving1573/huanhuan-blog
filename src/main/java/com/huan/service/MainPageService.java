@@ -35,4 +35,5 @@ public interface MainPageService {
 
     List<UserInfo> selectAll();
 
+    UserInfo selectUserDetail();
 }
