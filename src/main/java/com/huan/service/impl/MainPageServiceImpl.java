@@ -45,4 +45,8 @@ public class MainPageServiceImpl implements MainPageService {
         return userInfoMapper.selectAll();
     }
 
+    public UserInfo selectUserDetail() {
+        return userInfoMapper.selectByPrimaryKey("1");
+    }
+
 }

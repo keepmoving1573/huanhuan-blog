@@ -44,8 +44,11 @@ public class MainPageController {
     private MainPageService mainPageService;
 
     @RequestMapping(value = {"/", "index", "index.html"})
-    public String index() {
-        return "index";
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView("index");
+        UserInfo user = mainPageService.selectUserDetail();
+        modelAndView.addObject("user", user);
+        return modelAndView;
     }
 
     @RequestMapping(value = {"about", "about.html"})
