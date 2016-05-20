@@ -1,11 +1,12 @@
+server:
+    port: 8080
+
 spring:
     application:
         name: cruncher
 datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost/huan_blog
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/huan_blog?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     username: root
     password: root
     maximumPoolSize: 10
-server:
-    port: 9000

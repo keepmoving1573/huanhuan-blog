@@ -39,13 +39,14 @@ public class DatabaseConfiguration {
         logger.debug("Configuring Datasource");
 
         DruidDataSource druidDataSource = new DruidDataSource();
+        druidDataSource.setDriverClassName(driverClassName);
         druidDataSource.setUrl(url);
         druidDataSource.setUsername(username);
         druidDataSource.setPassword(password);
         druidDataSource.setMaxActive(maximumPoolSize);
         druidDataSource.setMaxWait(60000);
         druidDataSource.setMinIdle(1);
-        druidDataSource.setValidationQuery("SELECT 'x'");
+        druidDataSource.setValidationQuery("SELECT 1");
         druidDataSource.setTestWhileIdle(true);
         druidDataSource.setTestOnBorrow(false);
         druidDataSource.setTestOnReturn(false);
