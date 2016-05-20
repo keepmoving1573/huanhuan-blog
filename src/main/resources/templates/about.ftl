@@ -5,9 +5,9 @@
     <title>黑色Html5响应式个人博客模板――主题《如影随形》</title>
     <meta name="keywords" content="个人博客模板,博客模板,响应式"/>
     <meta name="description" content="如影随形主题的个人博客模板，神秘、俏皮。"/>
-    <link href="css/base.css" rel="stylesheet">
-    <link href="css/about.css" rel="stylesheet">
-    <link href="css/media.css" rel="stylesheet">
+    <link href="/css/base.css" rel="stylesheet">
+    <link href="/css/about.css" rel="stylesheet">
+    <link href="/css/media.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <!--[if lt IE 9]>
     <script src="js/modernizr.js"></script>
@@ -21,8 +21,8 @@
         <h2>影子是一个会撒谎的精灵，它在虚空中流浪和等待被发现之间;在存在与不存在之间....</h2>
 
         <div class="logo"><a href="/"></a></div>
-        <nav id="topnav"><a href="index">首页</a><a href="about">关于我</a><a href="newlist.html">慢生活</a><a
-                href="share.html">模板分享</a><a href="new.html">模板主题</a></nav>
+        <nav id="topnav"><a href="index">首页</a><a href="about">关于我</a><a href="newlist.ftl">慢生活</a><a
+                href="share.ftl">模板分享</a><a href="new.ftl">模板主题</a></nav>
     </header>
     <article>
         <h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="1/">关于我</a></h3>
@@ -61,7 +61,7 @@
         </div>
     </article>
     <aside>
-        <div class="avatar"><a href="about.html"><span>关于杨青</span></a></div>
+        <div class="avatar"><a href="about.ftl"><span>关于杨青</span></a></div>
         <div class="topspaceinfo">
             <h1>执子之手，与子偕老</h1>
 
@@ -90,7 +90,7 @@
                     src="http://rescdn.list.qq.com/zh_CN/htmledition/images/qunfa/manage/picMode_light_m.png"/></a></p>
         </div>
     </aside>
-    <script src="js/silder.js"></script>
+    <script src="/js/silder.js"></script>
     <div class="clear"></div>
     <!-- 清除浮动 -->
 </div>

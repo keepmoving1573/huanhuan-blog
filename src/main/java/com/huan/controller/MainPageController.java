@@ -43,7 +43,7 @@ public class MainPageController {
     @Autowired
     private MainPageService mainPageService;
 
-    @RequestMapping(value = {"/", "index", "index.html"})
+    @RequestMapping(value = {"/", "index", "index.ftl"})
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("index");
         UserInfo user = mainPageService.selectUserDetail();
@@ -51,24 +51,24 @@ public class MainPageController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"about", "about.html"})
+    @RequestMapping(value = {"about", "about.ftl"})
     public ModelAndView about() {
         ModelAndView modelAndView = new ModelAndView("about");
         modelAndView.addObject("name", "huanhuan");
         return modelAndView;
     }
 
-    @RequestMapping(value = {"new", "new.html"})
+    @RequestMapping(value = {"new", "new.ftl"})
     public String newArticle() {
         return "new";
     }
 
-    @RequestMapping(value = {"newlist", "newlist.html"})
+    @RequestMapping(value = {"newlist", "newlist.ftl"})
     public String newArticleList() {
         return "newlist";
     }
 
-    @RequestMapping(value = {"share", "share.html"})
+    @RequestMapping(value = {"share", "share.ftl"})
     public String share() {
         return "share";
     }

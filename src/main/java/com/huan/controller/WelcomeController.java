@@ -12,7 +12,7 @@ import java.util.Map;
 @Controller
 public class WelcomeController {
 
-    @RequestMapping("/")
+    @RequestMapping("/welcome")
     public String welcome(Map<String, Object> model) {
         model.put("time", new Date());
         model.put("message", "Hello World");
