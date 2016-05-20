@@ -1,0 +1,11 @@
+spring:
+    application:
+        name: cruncher
+datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/huan_blog
+    username: root
+    password: root
+    maximumPoolSize: 10
+server:
+    port: 9000
