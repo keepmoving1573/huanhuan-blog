@@ -12,8 +12,6 @@ public class FileUploadConfiguration {
 
     /**
      * 文件上传
-     *
-     * @return
      */
     @Bean
     public CommonsMultipartResolver multipartResolver() {

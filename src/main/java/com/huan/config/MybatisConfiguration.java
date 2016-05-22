@@ -41,6 +41,9 @@ public class MybatisConfiguration implements EnvironmentAware {
         return sessionFactory;
     }
 
+    /**
+     * 扫描跑mapper包下的所有接口，作为mybatis接口类，并注册为spring的bean
+     */
     @Bean
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer scannerConfigurer = new MapperScannerConfigurer();

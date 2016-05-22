@@ -33,7 +33,9 @@ public class DatabaseConfiguration {
     @Value("${datasource.maximumPoolSize}")
     private Integer maximumPoolSize;
 
-
+    /**
+     * 数据库连接配置
+     */
     @Bean(initMethod = "init", destroyMethod = "close")
     public DataSource dataSource() {
         logger.debug("Configuring Datasource");
@@ -53,7 +55,7 @@ public class DatabaseConfiguration {
         /**
          * configuration exception handling
          * */
-        druidDataSource.setQueryTimeout(30); //查询超时时间30s
+        druidDataSource.setQueryTimeout(15); //查询超时时间15s
         //通过datasource.getConnontion() 取得的连接必须在removeAbandonedTimeout这么多秒内调用close(),要不强制关闭.(就是conn不能超过指定的租期)
         druidDataSource.setRemoveAbandoned(true);
         druidDataSource.setRemoveAbandonedTimeout(600); //一个连接的租期10分钟，超时会被强制关闭
