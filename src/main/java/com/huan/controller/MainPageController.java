@@ -44,7 +44,7 @@ public class MainPageController {
     @Autowired
     private MainPageService mainPageService;
 
-    @RequestMapping(value = {"/", "index", "index.html"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "index"}, method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("index");
         UserInfo user = mainPageService.selectUserDetail();
@@ -52,24 +52,24 @@ public class MainPageController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"about", "about.html"}, method = RequestMethod.GET)
+    @RequestMapping(value = "about", method = RequestMethod.GET)
     public ModelAndView about() {
         ModelAndView modelAndView = new ModelAndView("about");
         modelAndView.addObject("name", "huanhuan");
         return modelAndView;
     }
 
-    @RequestMapping(value = {"new", "new.html"}, method = RequestMethod.GET)
+    @RequestMapping(value = "new", method = RequestMethod.GET)
     public String newArticle() {
         return "new";
     }
 
-    @RequestMapping(value = {"newlist", "newlist.html"}, method = RequestMethod.GET)
+    @RequestMapping(value = "newlist", method = RequestMethod.GET)
     public String newArticleList() {
         return "newlist";
     }
 
-    @RequestMapping(value = {"share", "share.html"}, method = RequestMethod.GET)
+    @RequestMapping(value = "share", method = RequestMethod.GET)
     public String share() {
         return "share";
     }
