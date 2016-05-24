@@ -1,6 +1,12 @@
 server:
     port: 8080
 
+spring:
+# freemarker默认读取templates目录的模版文件,默认为ftl(jsp,html,ftl)，和static下的静态资源文件（js,css）,此处自定义为html后缀名
+    freemarker:
+        prefix:
+        suffix: .html
+
 datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/huan_blog?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
