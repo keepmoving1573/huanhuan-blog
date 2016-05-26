@@ -19,7 +19,7 @@
         <!--  XML生成路径  -->
         <targetResourcesProject>${basedir}/src/main/resources</targetResourcesProject>
         <targetXMLPackage>mapper</targetXMLPackage>
-        <mysql.version>6.0.2</mysql.version>
+        <mysql.version>5.1.39</mysql.version>
         <spring.version>4.2.5.RELEASE</spring.version>
         <junit.version>4.12</junit.version>
     </properties>
