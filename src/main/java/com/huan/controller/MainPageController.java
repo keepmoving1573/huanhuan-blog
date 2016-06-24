@@ -29,6 +29,7 @@ import com.huan.service.MainPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -43,7 +44,7 @@ public class MainPageController {
     @Autowired
     private MainPageService mainPageService;
 
-    @RequestMapping(value = {"/", "index", "index.html"})
+    @RequestMapping(value = {"/", "index"}, method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("index");
         UserInfo user = mainPageService.selectUserDetail();
@@ -51,30 +52,30 @@ public class MainPageController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"about", "about.html"})
+    @RequestMapping(value = "about", method = RequestMethod.GET)
     public ModelAndView about() {
         ModelAndView modelAndView = new ModelAndView("about");
         modelAndView.addObject("name", "huanhuan");
         return modelAndView;
     }
 
-    @RequestMapping(value = {"new", "new.html"})
+    @RequestMapping(value = "new", method = RequestMethod.GET)
     public String newArticle() {
         return "new";
     }
 
-    @RequestMapping(value = {"newlist", "newlist.html"})
+    @RequestMapping(value = "newlist", method = RequestMethod.GET)
     public String newArticleList() {
         return "newlist";
     }
 
-    @RequestMapping(value = {"share", "share.html"})
+    @RequestMapping(value = "share", method = RequestMethod.GET)
     public String share() {
         return "share";
     }
 
     @ResponseBody
-    @RequestMapping("test")
+    @RequestMapping(value = "test", method = RequestMethod.GET)
     public List<UserInfo> selectAll() {
         return mainPageService.selectAll();
     }
