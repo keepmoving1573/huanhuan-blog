@@ -24,6 +24,8 @@
         <junit.version>4.12</junit.version>
         <liquibase.version>3.5.1</liquibase.version>
         <h2.version>1.4.192</h2.version>
+        <pagehelper.version>4.1.6</pagehelper.version>
+        <mapper.version>3.3.8</mapper.version>
     </properties>
 
     <dependencies>
@@ -191,6 +193,18 @@
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
+        <!--分页插件-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>${pagehelper.version}</version>
+        </dependency>
+        <!--通用Mapper-->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${mapper.version}</version>
+        </dependency>
 
         <!-- freemarker -->
         <dependency>
@@ -244,6 +258,11 @@
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
                         <version>${mysql.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>tk.mybatis</groupId>
+                        <artifactId>mapper</artifactId>
+                        <version>${mapper.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
