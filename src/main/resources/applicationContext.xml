@@ -20,15 +20,11 @@
     <bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <!-- 开发库 -->
-                <value>classpath:datasource/datasource_dev.properties</value>
-                <!-- 生产库 -->
-                <value>classpath:datasource/datasource_test.properties</value>
+                <!-- 引入数据源配置文件，支持*通配符表达式 -->
+                <value>classpath:datasource/*.properties</value>
             </list>
         </property>
     </bean>
-
-    <!--<context:property-placeholder location="classpath:datasource.properties"/>-->
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -92,16 +88,62 @@
             <property name="testOnBorrow" value="false"/>
             <property name="testOnReturn" value="false"/>
         </bean>
+        <!-- 初始化数据库表，加载数据库表和测试数据 -->
+        <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+            <property name="dataSource" ref="dataSource"/>
+            <property name="dropFirst" value="false"/>
+            <property name="changeLog" value="classpath:liquibase/master.xml"/>
+        </bean>
     </beans>
 
     <!-- 测试环境 -->
     <beans profile="test">
         <!-- Spring Simple连接池 -->
-        <bean id="ptfenceDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-            <property name="driverClass" value="${h2.jdbc.driver}"/>
-            <property name="url" value="${h2.jdbc.url}"/>
-            <property name="username" value="${h2.jdbc.username}"/>
-            <property name="password" value="${h2.jdbc.password}"/>
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+            <property name="driverClass" value="${jdbc.driverClass.test}"/>
+            <property name="url" value="${jdbc.url.test}"/>
+            <property name="username" value="${jdbc.user.test}"/>
+            <property name="password" value="${jdbc.password.test}"/>
+        </bean>
+        <!-- 初始化数据库表，加载数据库表和测试数据 -->
+        <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+            <property name="dataSource" ref="dataSource"/>
+            <property name="dropFirst" value="false"/>
+            <property name="changeLog" value="classpath:liquibase/master.xml"/>
+        </bean>
+    </beans>
+
+    <!-- 生产环境 -->
+    <beans profile="prod">
+        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+            <property name="driverClassName" value="${jdbc.driverClass.prod}"/>
+            <property name="url" value="${jdbc.url.prod}"/>
+            <property name="username" value="${jdbc.user.prod}"/>
+            <property name="password" value="${jdbc.password.prod}"/>
+
+            <property name="filters" value="stat"/>
+
+            <property name="maxActive" value="20"/>
+            <property name="initialSize" value="1"/>
+            <property name="maxWait" value="60000"/>
+            <property name="minIdle" value="1"/>
+
+            <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+            <property name="minEvictableIdleTimeMillis" value="300000"/>
+
+            <property name="validationQuery" value="SELECT 'x'"/>
+            <property name="testWhileIdle" value="true"/>
+            <property name="testOnBorrow" value="false"/>
+            <property name="testOnReturn" value="false"/>
+        </bean>
+
+        <!-- 初始化数据库表，生产环境不用加载测试数据，需要设置contexts环境，contexts=!test -->
+        <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+            <property name="dataSource" ref="dataSource"/>
+            <property name="dropFirst" value="false"/>
+            <property name="changeLog" value="classpath:liquibase/master.xml"/>
+            <!-- contexts specifies the runtime contexts to use. -->
+            <property name="contexts" value="!test"/>
         </bean>
     </beans>
 </beans>

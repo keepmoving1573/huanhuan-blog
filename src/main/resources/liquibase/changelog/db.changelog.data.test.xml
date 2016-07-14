@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+    <changeSet author="ptmind (generated)" id="1468503967456-1" context="test">
+        <insert tableName="user_info">
+            <column name="id" value="1"/>
+            <column name="username" value="张三"/>
+            <column name="net_name" value="heikehuan"/>
+            <column name="job" value="java后端开发"/>
+            <column name="family_native_place" value="湖北省孝感市"/>
+            <column name="mobile" value="15010696555"/>
+            <column name="email" value="873089222@qq.com"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

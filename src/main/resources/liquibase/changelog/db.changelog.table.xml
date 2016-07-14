@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+    <changeSet author="ptmind (generated)" id="1468502858368-1">
+        <createTable tableName="user_info">
+            <column name="id" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)"/>
+            <column name="net_name" type="VARCHAR(255)"/>
+            <column name="job" type="VARCHAR(255)"/>
+            <column name="family_native_place" type="VARCHAR(255)"/>
+            <column name="mobile" type="VARCHAR(100)"/>
+            <column name="email" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ptmind (generated)" id="1468502858368-2">
+        <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="user_info"/>
+    </changeSet>
+</databaseChangeLog>

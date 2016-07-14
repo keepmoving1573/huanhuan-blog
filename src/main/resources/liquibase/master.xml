@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+
+    <!-- @REVISIT - @JSE: still valid on 2016-05-16
+       There's a tricky issue in Mysql v>5.6.5 when creating tables with columns of type datetime, date or timestamp with 'defaultValue="0000-00-00 00:00:00"'
+       These will be rejected instead of the traditional warning.
+        To enable this, Mysql's sql_mode must be tampered.
+        On 5.7.10, by default
+        ```
+        mysql> SELECT @@sql_mode;
+        +**************************************************************************************************************************************************************************+
+        | @@sql_mode                                                                                                                                                               |
+        +**************************************************************************************************************************************************************************+
+        | STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION |
+        +**************************************************************************************************************************************************************************+
+        1 row in set (0.00 sec)
+        ```
+
+        Disabling TRADITIONAL is the most important as it triggers a lot of other modes. See [http://dev.mysql.com/doc/refman/5.7/en/sql-mode.html]().
+        This is tricky in any case, but this works:
+        ```
+        SET sql_mode='STRICT_TRANS_TABLES,STRICT_ALL_TABLES,ALLOW_INVALID_DATES';
+        ```
+        You may want to keep different modes on but must NOT have TRADITIONAL, and MUST have ALLOW_INVALID_DATES;
+
+        @IMPORTANT
+        because of https://dev.mysql.com/doc/refman/5.5/en/identifier-case-sensitivity.html "the case sensitivity of the underlying operating system plays a part in the case sensitivity of database, table, and trigger names"
+        the setting 'lower_case_table_names = 1' MUST be enabled in 'my.cnf' on Unix system (case sensitive systems)
+        To avoid this problem, use UPPER CASE table names
+    -->
+    <include file="liquibase/changelog/db.changelog.table.xml" relativeToChangelogFile="false"/>
+    <include file="liquibase/changelog/db.changelog.data.test.xml" relativeToChangelogFile="false"/>
+</databaseChangeLog>
