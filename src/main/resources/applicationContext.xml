@@ -16,29 +16,19 @@
 
     <context:component-scan base-package="com.huan"/>
 
-    <context:property-placeholder location="classpath:datasource.properties"/>
-
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <property name="driverClassName" value="${jdbc.driverClass}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.user}"/>
-        <property name="password" value="${jdbc.password}"/>
-
-        <property name="filters" value="stat"/>
-
-        <property name="maxActive" value="20"/>
-        <property name="initialSize" value="1"/>
-        <property name="maxWait" value="60000"/>
-        <property name="minIdle" value="1"/>
-
-        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
-        <property name="minEvictableIdleTimeMillis" value="300000"/>
-
-        <property name="validationQuery" value="SELECT 'x'"/>
-        <property name="testWhileIdle" value="true"/>
-        <property name="testOnBorrow" value="false"/>
-        <property name="testOnReturn" value="false"/>
+    <!-- 引入properties配置文件 -->
+    <bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <!-- 开发库 -->
+                <value>classpath:datasource/datasource_dev.properties</value>
+                <!-- 生产库 -->
+                <value>classpath:datasource/datasource_test.properties</value>
+            </list>
+        </property>
     </bean>
+
+    <!--<context:property-placeholder location="classpath:datasource.properties"/>-->
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -79,5 +69,39 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <!-- 开发环境 -->
+    <beans profile="dev">
+        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+            <property name="driverClassName" value="${jdbc.driverClass.dev}"/>
+            <property name="url" value="${jdbc.url.dev}"/>
+            <property name="username" value="${jdbc.user.dev}"/>
+            <property name="password" value="${jdbc.password.dev}"/>
 
+            <property name="filters" value="stat"/>
+
+            <property name="maxActive" value="20"/>
+            <property name="initialSize" value="1"/>
+            <property name="maxWait" value="60000"/>
+            <property name="minIdle" value="1"/>
+
+            <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+            <property name="minEvictableIdleTimeMillis" value="300000"/>
+
+            <property name="validationQuery" value="SELECT 'x'"/>
+            <property name="testWhileIdle" value="true"/>
+            <property name="testOnBorrow" value="false"/>
+            <property name="testOnReturn" value="false"/>
+        </bean>
+    </beans>
+
+    <!-- 测试环境 -->
+    <beans profile="test">
+        <!-- Spring Simple连接池 -->
+        <bean id="ptfenceDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+            <property name="driverClass" value="${h2.jdbc.driver}"/>
+            <property name="url" value="${h2.jdbc.url}"/>
+            <property name="username" value="${h2.jdbc.username}"/>
+            <property name="password" value="${h2.jdbc.password}"/>
+        </bean>
+    </beans>
 </beans>
