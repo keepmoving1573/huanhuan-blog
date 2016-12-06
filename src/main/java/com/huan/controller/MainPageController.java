@@ -28,10 +28,10 @@ import com.huan.model.UserInfo;
 import com.huan.service.MainPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -45,18 +45,16 @@ public class MainPageController {
     private MainPageService mainPageService;
 
     @RequestMapping(value = {"/", "index"}, method = RequestMethod.GET)
-    public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("index");
+    public String index(ModelMap modelMap) {
         UserInfo user = mainPageService.selectUserDetail();
-        modelAndView.addObject("user", user);
-        return modelAndView;
+        modelMap.put("user", user);
+        return "index";
     }
 
     @RequestMapping(value = "about", method = RequestMethod.GET)
-    public ModelAndView about() {
-        ModelAndView modelAndView = new ModelAndView("about");
-        modelAndView.addObject("name", "huanhuan");
-        return modelAndView;
+    public String about(ModelMap modelMap) {
+        modelMap.put("name", "huanhuan");
+        return "about";
     }
 
     @RequestMapping(value = "new", method = RequestMethod.GET)
