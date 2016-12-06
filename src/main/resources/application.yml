@@ -11,7 +11,7 @@ spring:
     profiles: dev
 datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/huan_blog_dev?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/huan_blog?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     username: root
     password: root
     maximumPoolSize: 10
