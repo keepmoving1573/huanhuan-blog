@@ -24,11 +24,14 @@
 
 package com.huan.controller;
 
+import com.huan.bean.UserInfoBean;
 import com.huan.model.UserInfo;
 import com.huan.service.MainPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,7 +49,7 @@ public class MainPageController {
 
     @RequestMapping(value = {"/", "index"}, method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
-        UserInfo user = mainPageService.selectUserDetail();
+        UserInfo user = mainPageService.selectUserDetail("1");
         modelMap.put("user", user);
         return "index";
     }
@@ -77,4 +80,25 @@ public class MainPageController {
     public List<UserInfo> selectAll() {
         return mainPageService.selectAll();
     }
+
+    @ResponseBody
+    @RequestMapping(value = "testuserdetailselect", method = RequestMethod.GET)
+    public UserInfo testuserdetail(String id) {
+        return mainPageService.selectUserDetail(id);
+    }
+
+    @RequestMapping(value = "testuserdetailupdate", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String testuserdetailupdate(@RequestBody UserInfoBean userInfoBean) {
+        mainPageService.updateUser(userInfoBean);
+        return "success";
+    }
+
+    @RequestMapping(value = "testuserdetailadd", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String testuserdetailadd(@RequestBody UserInfoBean userInfoBean) {
+        mainPageService.add(userInfoBean);
+        return "add success";
+    }
+
 }

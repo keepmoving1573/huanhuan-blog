@@ -24,6 +24,7 @@
 
 package com.huan.service;
 
+import com.huan.bean.UserInfoBean;
 import com.huan.model.UserInfo;
 
 import java.util.List;
@@ -35,5 +36,9 @@ public interface MainPageService {
 
     List<UserInfo> selectAll();
 
-    UserInfo selectUserDetail();
+    UserInfo selectUserDetail(String userId);
+
+    void updateUser(UserInfoBean param);
+
+    void add(UserInfoBean param);
 }
