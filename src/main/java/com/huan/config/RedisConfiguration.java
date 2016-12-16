@@ -33,6 +33,9 @@ public class RedisConfiguration {
         return jedisConnectionFactory;
     }
 
+    /**
+     * redisTemplate
+     */
     @Bean
     public RedisTemplate<Object, Object> redisTemplate() {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<Object, Object>();
@@ -40,6 +43,9 @@ public class RedisConfiguration {
         return redisTemplate;
     }
 
+    /**
+     * cacheManager
+     */
     @Bean
     public CacheManager cacheManager(RedisTemplate redisTemplate) {
         RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
