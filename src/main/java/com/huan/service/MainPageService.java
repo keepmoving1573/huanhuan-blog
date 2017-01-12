@@ -24,6 +24,7 @@
 
 package com.huan.service;
 
+import com.huan.model.ArticleList;
 import com.huan.model.UserInfo;
 
 import java.util.List;
@@ -36,4 +37,6 @@ public interface MainPageService {
     List<UserInfo> selectAll();
 
     UserInfo selectUserDetail();
+
+    List<ArticleList> selectAllArticle();
 }

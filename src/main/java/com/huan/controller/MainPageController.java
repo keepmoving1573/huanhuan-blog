@@ -24,6 +24,7 @@
 
 package com.huan.controller;
 
+import com.huan.model.ArticleList;
 import com.huan.model.UserInfo;
 import com.huan.service.MainPageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,9 @@ public class MainPageController {
     @RequestMapping(value = {"/", "index"}, method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
         UserInfo user = mainPageService.selectUserDetail();
+        List<ArticleList> articleList = mainPageService.selectAllArticle();
         modelMap.put("user", user);
+        modelMap.put("articleList", articleList);
         return "index";
     }
 
