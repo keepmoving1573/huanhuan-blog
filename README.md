@@ -34,23 +34,17 @@ jdk 1.8
 maven 3.3.9
 
 ### 使用的技术 ###
-目前是初期，使用springmvc + spring + mybatis + freemarker
 
-后期会陆续加入其他技术，将会更新到此文档
+后端
+- springmvc
+- mybatis
+- spring-boot
+- redis
 
-### 使用建议 ###
-
-**huanhuan-blog** 是一个通用JavaWeb项目骨架，使用业内最佳技术实践作为基础组件。
-
-springmvc同时兼容本地化javaweb的路由，和restful风格，成为当仁不让的最佳选择。（我会在后期的branch里加入一个restful前后端分离的风格）。
-
-mybatis使用原生sql，对于sql熟手来说，在开发难度和性能上，都优于hibernate。
-
-huanhuan-blog作为一个种子项目，你可以基于它，快速搭建项目原型，并基于自己的业务场景修改源码。
-
+前端
+- freemarker
 
 ### 更新日志 ###
-
 
 #### 2.0 ####
 
@@ -84,4 +78,4 @@ File -> Import Project -> select huanhuan-blog folder -> create project form exi
 File -> Import -> Existing Maven Projects -> ...
 
 ### 效果图
-![blog_home](image/blog_home.jpg)
+![主页](image/blog_home.jpg)
