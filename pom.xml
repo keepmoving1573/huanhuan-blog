@@ -21,7 +21,6 @@
         <targetResourcesProject>${basedir}/src/main/resources</targetResourcesProject>
         <targetXMLPackage>mapper</targetXMLPackage>
         <mysql.version>5.1.39</mysql.version>
-        <junit.version>4.12</junit.version>
     </properties>
 
     <parent>
