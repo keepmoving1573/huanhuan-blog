@@ -16,68 +16,6 @@
 
     <context:component-scan base-package="com.huan"/>
 
-    <context:property-placeholder location="classpath:datasource.properties"/>
-
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <property name="driverClassName" value="${jdbc.driverClass}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.user}"/>
-        <property name="password" value="${jdbc.password}"/>
-
-        <property name="filters" value="stat"/>
-
-        <property name="maxActive" value="20"/>
-        <property name="initialSize" value="1"/>
-        <property name="maxWait" value="60000"/>
-        <property name="minIdle" value="1"/>
-
-        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
-        <property name="minEvictableIdleTimeMillis" value="300000"/>
-
-        <property name="validationQuery" value="SELECT 'x'"/>
-        <property name="testWhileIdle" value="true"/>
-        <property name="testOnBorrow" value="false"/>
-        <property name="testOnReturn" value="false"/>
-    </bean>
-
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations">
-            <array>
-                <value>classpath:mapper/*.xml</value>
-            </array>
-        </property>
-        <property name="typeAliasesPackage" value="com.huan.model"/>
-    </bean>
-
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="addToConfig" value="true"/>
-        <property name="basePackage" value="com.huan.mapper"/>
-    </bean>
-
-    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
-        <constructor-arg index="0" ref="sqlSessionFactory"/>
-    </bean>
-
-    <aop:aspectj-autoproxy/>
-
-    <aop:config>
-        <aop:pointcut id="appService" expression="execution(* com.huan.service..*Service*.*(..))"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="appService"/>
-    </aop:config>
-
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="select*" read-only="true"/>
-            <tx:method name="find*" read-only="true"/>
-            <tx:method name="get*" read-only="true"/>
-            <tx:method name="*"/>
-        </tx:attributes>
-    </tx:advice>
-
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
+    <import resource="classpath:spring-data-redis-cluster.xml"/>
 
 </beans>
