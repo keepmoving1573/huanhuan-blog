@@ -20,6 +20,11 @@ public class RedisTestController {
     @Autowired
     private RedisService redisService;
 
+    @RequestMapping(value = "test", method = RequestMethod.GET)
+    public String test() {
+        return "test";
+    }
+
     @RequestMapping(value = "set", method = RequestMethod.GET)
     public String set(String key, String value) {
         redisService.setWithTimeout(key, value, 5, TimeUnit.SECONDS);
