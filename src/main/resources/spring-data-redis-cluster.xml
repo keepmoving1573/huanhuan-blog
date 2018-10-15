@@ -7,6 +7,28 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
+    <!-- 引入缓存的配置文件properties -->
+    <bean
+            class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+        <property name="locations">
+            <list>
+                <!-- 此位置是相对于:部署后的项目根路径 -->
+                <!-- <value>/WEB-INF/cache.properties</value> -->
+                <!-- 此位置是相对于:文件直接在src 目录下 -->
+                <!-- <value>classpath*:cache.properties</value> -->
+                <!-- 此位置是相对于:文件在目录下面 -->
+                <!-- <value>classpath*:cache/cache.properties</value> -->
+                <value>classpath*:redis.properties</value>
+                <!-- 此位置是从服务器环境变量中查找名为：XXX 的值(例如：file:D:/test/test.properties) -->
+                <!-- <value>${XXX}</value> -->
+                <!-- 此位置是相对于:文件系统 -->
+                <!-- <value>file:D:/test/test.properties</value> -->
+            </list>
+        </property>
+    </bean>
+
     <!-- redis属性配置 -->
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
         <property name="maxTotal" value="${redis.pool.maxTotal:1024}" />
