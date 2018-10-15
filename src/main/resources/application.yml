@@ -10,12 +10,13 @@ spring:
     redis:
         #redis数据库名称  从0到15,默认为db0
         database: 0
-        # 连接redis的密码,requirpass(跟redis的master和slave同步密码masterauth两回事)
-        password: ptmind
+        # 连接redis master的密码,requirpass(跟redis的master和slave同步密码masterauth两回事)
+        password: 123456
         sentinel:
           # master的名字是在哨兵进程里定义的
           master: mymaster
-          nodes: 172.16.100.81:6378,172.16.100.81:6379,172.16.100.81:26379
+          # redis会自动把127.0.0.1转成ip
+          nodes: 100.80.180.38:26379
 ---
 spring:
     profiles: dev
@@ -36,8 +37,8 @@ spring:
         password:
         sentinel:
           # master的名字是在哨兵进程里定义的
-          master: master
-          nodes: 127.0.0.1:6379,127.0.0.1:6380,127.0.0.1:26379
+          master: mymaster
+          nodes: 100.80.180.38:26379
 datasource:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/huan_blog?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
